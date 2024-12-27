@@ -28,6 +28,14 @@
       padding-bottom: 100px;
     }
 
+    .text2 {
+      width: 90%;
+      font-size: 16px;
+      color: #999999;
+      padding-bottom: 40px;
+      text-align: center;
+    }
+
     .btn {
       width: 200px;
       height: 60px;
@@ -44,10 +52,10 @@
 <body>
   <div id="app">
     <div class="box">
-      <p class="text">已完成，请返回APP继续操作！</p>
+      <p class="text">已完成,请返回APP继续操作!</p>
       <!-- 写一个a标签跳转链接 -->
-      <a href="jjstest://pages/machine/index">跳转地址</a>
-      <p class="text">地址:jjstest://pages/machine/index</p>
+      <a href="jjstest://pages/machine/index">复制:</a>
+      <p class="text2">jjstest://pages/machine/index</p>
       <button class="btn" @click="goBackApp" id="openBrowser">返回APP</button>
     </div>
   </div>
