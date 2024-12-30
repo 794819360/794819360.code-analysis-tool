@@ -54,12 +54,11 @@
     <div class="box">
       <p class="text">已完成，请返回APP继续操作！</p>
       <!-- 写一个a标签跳转链接 -->
-      <a href="jjstest://pages/machine/index">复制链接通过第三方浏览器打开：</a>
-      <p class="text2">jjstest://pages/machine/index</p>
+      <a href="calltmeclient://oktme.com/req?MarketID=E001">复制链接通过第三方浏览器打开：</a>
+      <p class="text2">calltmeclient://oktme.com/req?MarketID=E001</p>
       <button class="btn" @click="goBackApp" id="openBrowser">返回APP</button>
       <!-- a -->
-      <a href="#"
-        onclick="javascript:callApp('calltmeclient://oktme.com/req?CallTMEClient=Y&amp;module=2020&amp;ZC=97&amp;product=121')">点击跳转app:</a>
+      <a href="#" onclick="callApp('calltmeclient://oktme.com/req?MarketID=E001')">点击跳转app:</a>
     </div>
   </div>
 </body>
@@ -89,7 +88,7 @@
         if (browser.versions.ios) {
           document.getElementById('openBrowser').addEventListener('click', function () {
             // 获取完整的 URL
-            const fullUrl = 'jjstest://pages/machine/index';
+            const fullUrl = 'calltmeclient://oktme.com/req?MarketID=E001';
 
             // 使用 JavaScript 复制 URL 到剪贴板
             navigator.clipboard.writeText().then(() => {
@@ -97,11 +96,11 @@
               alert('链接已复制到剪贴板，请在浏览器中打开');
             });
           });
-          window.location.href = "jjstest://pages/machine/index";
+          window.location.href = "calltmeclient://oktme.com/req?MarketID=E001";
         } else if (browser.versions.android) {
           document.getElementById('openBrowser').addEventListener('click', function () {
             // 获取完整的 URL
-            const fullUrl = 'jjstest://pages/machine/index';
+            const fullUrl = 'calltmeclient://oktme.com/req?MarketID=E001';
 
             // 使用 JavaScript 复制 URL 到剪贴板
             navigator.clipboard.writeText().then(() => {
@@ -109,7 +108,7 @@
               alert('链接已复制到剪贴板，请在浏览器中打开');
             });
           });
-          window.location.href = "jjstest://pages/machine/index";
+          window.location.href = "calltmeclient://oktme.com/req?MarketID=E001";
         } else {
           alert('暂不支持跳转')
         }
