@@ -44,7 +44,7 @@
         这是 H5 页面
         <div class="now"></div>
     </div>
-    <input class="btn" type="button" value="向小程序发送消息" />
+    <input class="btn" type="button" value="向小程序发送消息2" />
     <div class="output"></output>
 
         <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
@@ -64,7 +64,7 @@
                 // 使用 postMessage API 发送消息到小程序
                 wx.miniProgram.postMessage({ data: { message: '登陆成功！', type: 'loginSuccess' } })
                 // wx.miniProgram.getEnv(function (res) { console.log(res.miniprogram) })
-                wx.miniProgram.navigateTo({ url: '/pages/index/index?a=1&b=2' })
+                wx.miniProgram.navigateTo({ url: '/pages/myPages/pages/myListing/myListing?a=1&b=2' })
             });
             // btnObj.addEventListener("click", function () {
             //     miniProgramHybrid.call(
