@@ -3,120 +3,98 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
-  <style>
-    #app {
-      width: 100%;
-      height: 100%;
-    }
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 
-    .box {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-evenly;
-      margin-top: 200px;
-    }
-
-    .text {
-      width: 90%;
-      font-size: 24px;
-      font-weight: 600;
-      padding-bottom: 100px;
-    }
-
-    .text2 {
-      width: 90%;
-      font-size: 16px;
-      color: #999999;
-      padding-bottom: 40px;
+  <style type="text/css">
+    .title {
+      padding: 10px;
       text-align: center;
+      font-weight: bold;
+    }
+
+    .now {
+      margin-top: 10px;
+      text-align: center;
+      font-weight: lighter;
+      color: #999999;
     }
 
     .btn {
-      width: 200px;
-      height: 60px;
-      line-height: 60px;
-      border: none;
-      background-color: #FF7A14;
-      font-size: 20px;
-      color: #fff;
-      border-radius: 80px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .msg {
+      padding: 10px;
+      font-weight: lighter;
+    }
+
+    .msg:nth-child(even) {
+      background-color: #EFEFEF;
+    }
+
+    .output {
+      word-wrap: break-word;
     }
   </style>
 </head>
 
 <body>
-  <div id="app">
-    <div class="box">
-      <p class="text">已完成，请返回APP继续操作！</p>
-      <!-- 写一个a标签跳转链接 -->
-      <a href="calltmeclient://oktme.com/req?MarketID=E00">复制链接通过第三方浏览器打开：</a>
-      <p class="text2">jjstest://pages/machine/index</p>
-      <p class="text2">calltmeclient://oktme.com/req?MarketID=E00</p>
-      <button class="btn" @click="goBackApp" id="openBrowser">返回APP</button>
-      <!-- a -->
-      <a href="#"
-        onclick="javascript:callApp('calltmeclient://oktme.com/req?CallTMEClient=Y&amp;module=2020&amp;ZC=97&amp;product=121')">点击跳转app:</a>
-    </div>
+  <div class="title">
+    这是 H5 页面
+    <div class="now"></div>
   </div>
-</body>
-<!-- 先引入 Vue -->
-<script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
-<script>
-  // 兼容
-  var browser = {
-    versions: function () {
-      var u = navigator.userAgent,
-        app = navigator.appVersion;
-      return {
-        /*是否为移动终端*/
-        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
-        /*ios终端*/
-        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+  <input class="btn" type="button" value="向小程序发送消息" />
+  <div class="output"></output>
+
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+    <script type="text/javascript" src="miniProgramHybrid.js"></script>
+    <script type="text/javascript">
+      var $ = function (selector) {
+        return document.querySelector(selector);
       };
-    }(),
-    language: (navigator.browserLanguage || navigator.language).toLowerCase()
-  };
 
-  var myApp = new Vue({
-    el: '#app',
-    data: {},
-    methods: {
-      goBackApp() {
-        if (browser.versions.ios) {
-          document.getElementById('openBrowser').addEventListener('click', function () {
-            // 获取完整的 URL
-            const fullUrl = 'calltmeclient://oktme.com/req?MarketID=E00';
+      var nowObj = $(".now"),
+        btnObj = $(".btn"),
+        outputObj = $(".output");
 
-            // 使用 JavaScript 复制 URL 到剪贴板
-            navigator.clipboard.writeText().then(() => {
-              console.log('URL copied to the clipboard');
-              alert('链接已复制到剪贴板，请在浏览器中打开');
-            });
-          });
-          window.location.href = "calltmeclient://oktme.com/req?MarketID=E00";
-        } else if (browser.versions.android) {
-          document.getElementById('openBrowser').addEventListener('click', function () {
-            // 获取完整的 URL
-            const fullUrl = 'calltmeclient://oktme.com/req?MarketID=E00';
+      nowObj.innerHTML = new Date().toLocaleString();
+      btnObj.addEventListener("click", function () {
+        miniProgramHybrid.call(
+          /**
+           * 必填
+           * 业务指令，由 H5 和 小程序 双方约定。H5发出，小程序接收并响应
+           */
+          "open-camera",
 
-            // 使用 JavaScript 复制 URL 到剪贴板
-            navigator.clipboard.writeText().then(() => {
-              console.log('URL copied to the clipboard');
-              alert('链接已复制到剪贴板，请在浏览器中打开');
-            });
-          });
-          window.location.href = "calltmeclient://oktme.com/req?MarketID=E00";
-        } else {
-          alert('暂不支持跳转')
-        }
-      },
-    }
-  })
-</script>
+          /**
+           * 选填
+           * 业务指令执行参数，由 H5 和 小程序 双方约定，用于指导小程序的工作细节
+           */
+          {
+            quality: (Math.random() + 0.1).toFixed(1)
+          },
+
+          /**
+           * 选填
+           * 用于接收小程序处理结果的回调方法
+           * 
+           * @param {String} result 小程序的反馈结果
+           */
+          function (result) {
+            var msgObj = document.createElement("div");
+            msgObj.classList.add("msg");
+            msgObj.innerHTML = "收到反馈：<br/>" + result;
+
+            var firstChild = outputObj.children[0];
+            if (null == firstChild)
+              outputObj.appendChild(msgObj);
+            else
+              outputObj.insertBefore(msgObj, firstChild);
+          }
+        );
+      });
+    </script>
+</body>
 
 </html>
