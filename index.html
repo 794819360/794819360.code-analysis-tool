@@ -46,7 +46,7 @@
         <div class="msg">收到小程序传过来的消息：</div>
         <div class="now"></div>
     </div>
-    <input class="btn" type="button" value="向小程序发送消息2" />
+    <input class="btn" type="button" value="向小程序发送消息5" />
     <div class="output"></output>
 
         <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
@@ -74,10 +74,12 @@
 
             // 监听按钮点击事件
             btnObj.addEventListener('click', function () {
+                // 跳转到baidu.com
+                window.location.href = "https://www.baidu.com";
                 // 使用 postMessage API 发送消息到小程序
                 wx.miniProgram.postMessage({ data: { message: '登陆成功！', type: 'loginSuccess' } })
                 // wx.miniProgram.getEnv(function (res) { console.log(res.miniprogram) })
-                wx.miniProgram.navigateTo({ url: '/pages/myPages/pages/myListing/myListing?a=1&b=2' })
+                // wx.miniProgram.navigateTo({ url: '/pages/myPages/pages/myListing/myListing?a=1&b=2' })
             });
             // btnObj.addEventListener("click", function () {
             //     miniProgramHybrid.call(
