@@ -75,11 +75,11 @@
             // 监听按钮点击事件
             btnObj.addEventListener('click', function () {
                 // 跳转到baidu.com
-                window.location.href = "https://www.baidu.com";
+                // window.location.href = "https://www.baidu.com";
                 // 使用 postMessage API 发送消息到小程序
                 wx.miniProgram.postMessage({ data: { message: '登陆成功！', type: 'loginSuccess' } })
                 // wx.miniProgram.getEnv(function (res) { console.log(res.miniprogram) })
-                // wx.miniProgram.navigateTo({ url: '/pages/myPages/pages/myListing/myListing?a=1&b=2' })
+                wx.miniProgram.navigateTo({ url: '/pages/myPages/pages/myListing/myListing?a=1&b=2' })
             });
             // btnObj.addEventListener("click", function () {
             //     miniProgramHybrid.call(
